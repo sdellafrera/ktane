@@ -1,0 +1,77 @@
+<div class="col-xs-12">
+    <h3>Definizioni</h3>
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label for="definition_serial">Seriale:</label>
+            <input class="form-control" type="text" id="definition_serial" />
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label for="definition_battery_count">Batterie (q.tà):</label>
+            <input class="form-control" type="text" id="definition_battery_count" />
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label for="definition_label">Spia:</label>
+            <select multiple class="form-control" id="definition_label">
+                <option value=""></option>
+                <option value="SND">SND</option>
+                <option value="CLR">CLR</option>
+                <option value="CAR">CAR</option>
+                <option value="IND">IND</option>
+                <option value="FRQ">FRQ</option>
+                <option value="SIG">SIG</option>
+                <option value="NSA">NSA</option>
+                <option value="MSA">MSA</option>
+                <option value="TRN">TRN</option>
+                <option value="BOB">BOB</option>
+                <option value="FRK">FRK</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="form-group">
+            <label for="definition_error_count">Errori:</label>
+            <input class="form-control" type="text" id="definition_error_count" />
+        </div>
+    </div>
+</div>
+
+<script>
+    function lastNumberOfSerialIsOdd() {
+        number = getAllNumber(getSerialNumber());
+        lastNumber = parseInt(number.substr(number.length - 1));
+        return isOdd(lastNumber);
+    }
+
+    function serialNumberContainsVowel() {
+        let arr_vowel_list = 'aeiouAEIOU'.split('');
+        let count = 0;
+        /*for each of the elements of the splitted string(i.e. str), the vowels list would check 
+          for any occurence and increments the count, if present*/
+        getSerialNumber().split('').forEach(function (e) {
+            if (arr_vowel_list.indexOf(e) !== -1) {
+                count++;
+            }
+        });
+        return count > 0;
+    }
+
+    function getSerialNumber() {
+        return $("#definition_serial")[0].value;
+    }
+
+    function getErrorCount() {
+        return parseInt($("#definition_error_count")[0].value);
+    }
+
+    function getBatteryCount() {
+        return parseInt($("#definition_battery_count")[0].value);
+    }
+
+    function getLabelText() {
+        return $("#definition_label")[0].value;
+    }
+</script>

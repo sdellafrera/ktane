@@ -1,0 +1,57 @@
+<div class="col-xs-12">
+    <h3>Bottone</h3>
+    <div class="col-xs-4">
+        <select class="form-control" id="button_color">
+            <option value=""></option>
+            <option value="Giallo">Giallo</option>
+            <option value="Bianco">Bianco</option>
+            <option value="Blu">Blu</option>
+            <option value="Altro">Altro</option>
+        </select>
+    </div>
+    <div class="col-xs-4">
+        <select class="form-control" id="button_text">
+            <option value=""></option>
+            <option value="Detonate">Detonate</option>
+            <option value="Abort">Abort</option>
+            <option value="Hold">Hold</option>
+        </select>
+    </div>
+    <div class="col-xs-4">
+        <button class="btn btn-danger btn-sm" onclick="buttonCase();">Solution</button>
+    </div>
+</div>
+<script>
+
+    function buttonCase() {
+        buttonColor = $("#button_color")[0].value;
+        buttonText = $("#button_text")[0].value;
+        buttonModule(buttonColor, buttonText);
+    }
+
+    function buttonModule(buttonColor, buttonText) {
+        if (buttonColor == "Blu" && buttonText == "Abort") {
+            alert("Premi e tienilo premuto. Rilascia quando il timer ha un 4 in qualunque posizione");
+        } else if (getBatteryCount() > 1 && buttonText == "Detonate") {
+            alert("Premi e rilascia immediatamente il bottone");
+        } else if (buttonColor == "Bianco" && getLabelText() == "CAR") {
+            alert("Premi e tienilo premuto. Rilascia quando il timer ha un 1 in qualunque posizione");
+        } else if (getBatteryCount() > 2 && getLabelText() == "FRK") {
+            alert("Premi e rilascia immediatamente il bottone");
+        } else if (buttonColor == "Giallo") {
+            alert("Premi e tienilo premuto. Rilascia quando il timer ha un 5 in qualunque posizione");
+        } else if (buttonColor == "Rosso" && buttonText == "Hold") {
+            alert("Premi e rilascia immediatamente il bottone");
+        } else {
+            if (buttonColor == "Blu") {
+                alert("Premi e tienilo premuto. Rilascia quando il timer ha un 4 in qualunque posizione");
+            } else if (buttonColor == "Bianco") {
+                alert("Premi e tienilo premuto. Rilascia quando il timer ha un 1 in qualunque posizione");
+            } else if (buttonColor == "Giallo") {
+                alert("Premi e tienilo premuto. Rilascia quando il timer ha un 5 in qualunque posizione");
+            } else if (buttonColor == "Altro") {
+                alert("Premi e tienilo premuto. Rilascia quando il timer ha un 1 in qualunque posizione");
+            }
+        }
+    }
+</script>

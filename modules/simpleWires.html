@@ -1,0 +1,163 @@
+<div class="col-xs-12">
+    <h3>Cavo semplice</h3>
+    <div class="col-xs-2">
+        <select class="form-control" id="wires_index_1">
+            <option value=""></option>
+            <option value="Rosso">Rosso</option>
+            <option value="Giallo">Giallo</option>
+            <option value="Bianco">Bianco</option>
+            <option value="Nero">Nero</option>
+            <option value="Blu">Blu</option>
+        </select>
+    </div>
+
+    <div class="row col-xs-2">
+        <select class="form-control" id="wires_index_wire2">
+            <option value=""></option>
+            <option value="Rosso">Rosso</option>
+            <option value="Giallo">Giallo</option>
+            <option value="Bianco">Bianco</option>
+            <option value="Nero">Nero</option>
+            <option value="Blu">Blu</option>
+        </select>
+    </div>
+
+    <div class="col-xs-2">
+        <select class="form-control" id="wires_index_3">
+            <option value=""></option>
+            <option value="Rosso">Rosso</option>
+            <option value="Giallo">Giallo</option>
+            <option value="Bianco">Bianco</option>
+            <option value="Nero">Nero</option>
+            <option value="Blu">Blu</option>
+        </select>
+    </div>
+
+    <div class="col-xs-2">
+        <select class="form-control" id="wires_index_4">
+            <option value=""></option>
+            <option value="Rosso">Rosso</option>
+            <option value="Giallo">Giallo</option>
+            <option value="Bianco">Bianco</option>
+            <option value="Nero">Nero</option>
+            <option value="Blu">Blu</option>
+        </select>
+    </div>
+
+    <div class="col-xs-2">
+        <select class="form-control" id="wires_index_5">
+            <option value=""></option>
+            <option value="Rosso">Rosso</option>
+            <option value="Giallo">Giallo</option>
+            <option value="Bianco">Bianco</option>
+            <option value="Nero">Nero</option>
+            <option value="Blu">Blu</option>
+        </select>
+    </div>
+
+    <div class="col-xs-2">
+        <select class="form-control" id="wires_index_6">
+            <option value=""></option>
+            <option value="Rosso">Rosso</option>
+            <option value="Giallo">Giallo</option>
+            <option value="Bianco">Bianco</option>
+            <option value="Nero">Nero</option>
+            <option value="Blu">Blu</option>
+        </select>
+    </div>
+</div>
+<div class="col-xs-12">
+    <div class="col-xs-12">
+        <button class="btn btn-danger btn-sm" onclick="simpleWires();">Solution</button>
+    </div>
+</div>
+
+<script>
+    function simpleWires() {
+        serialNumber = $("#definition_serial")[0].value;
+        wire1 = $("#wires_index_1")[0].value;
+        wire2 = $("#wires_index_2")[0].value;
+        wire3 = $("#wires_index_3")[0].value;
+        wire4 = $("#wires_index_4")[0].value;
+        wire5 = $("#wires_index_5")[0].value;
+        wire6 = $("#wires_index_6")[0].value;
+        simpleWire(wire1, wire2, wire3, wire4, wire5, wire6, serialNumber);
+    }
+
+    function simpleWire(wire1, wire2, wire3, wire4, wire5, wire6, serial) {
+    if (wire1 != "" && wire2 != "" && wire3 != "" && wire4 != "" && wire5 != "" && wire6 != "") {
+        sixWires(wire1, wire2, wire3, wire4, wire5, wire6, serial);
+    } else if (wire1 != "" && wire2 != "" && wire3 != "" && wire4 != "" && wire5 != "") {
+        fiveWires(wire1, wire2, wire3, wire4, wire5, serial);
+    } else if (wire1 != "" && wire2 != "" && wire3 != "" && wire4 != "") {
+        fourWires(wire1, wire2, wire3, wire4, serial);
+    } else if (wire1 != "" && wire2 != "" && wire3 != "") {
+        threeWires(wire1, wire2, wire3, serial);
+    }
+}
+
+function threeWires(wire1, wire2, wire3) {
+    var colors = [wire1, wire2, wire3];
+    if (wire1 != "Rosso" && wire2 != "Rosso" && wire3 != "Rosso") {
+        alert("taglia il secondo cavo");
+    } else if (wire6 == "Bianco") {
+        alert("taglia l'ultimo cavo");
+    } else if (countValueInArray(colors, "Blu") > 1) {
+        alert("taglia l'ultimo cavo blu");
+    } else {
+        alert("taglia l'ultimo cavo");
+    }
+}
+
+function fourWires(wire1, wire2, wire3, wire4, serial) {
+    var colors = [wire1, wire2, wire3, wire4];
+    if (countValueInArray(colors, "Rosso") > 1 && lastNumberOfSerialIsOdd(serial)) {
+        alert("taglia l'ultimo cavo rosso");
+    } else if (countValueInArray(colors, "Rosso") == 0 && colors[3] == "Giallo") {
+        alert("Taglio il primo cavo");
+    } else if (countValueInArray(colors, "Blu") == 1) {
+        alert("taglia il primo cavo");
+    } else if (countValueInArray(colors, "Giallo") > 1) {
+        alert("taglia l'ultimo cavo");
+    } else {
+        alert("taglia il secondo cavo");
+    }
+}
+
+function fiveWires(wire1, wire2, wire3, wire4, wire5, serial) {
+    var colors = [wire1, wire2, wire3, wire4, wire5];
+    if (colors[4] == "Nero" && lastNumberOfSerialIsOdd(serial)) {
+        alert("taglia il quarto cavo");
+    } else if (countValueInArray(colors, "Rosso") == 1 && countValueInArray(colors, "Giallo") > 1) {
+        alert("Taglio il primo cavo");
+    } else if (countValueInArray(colors, "Nero") == 0) {
+        alert("taglia il secondo cavo");
+    } else {
+        alert("taglia il primo cavo");
+    }
+}
+
+function sixWires(wire1, wire2, wire3, wire4, wire5, wire6, serial) {
+    var colors = [wire1, wire2, wire3, wire4, wire5, wire6];
+    if (countValueInArray(colors, "Giallo") == 0 && lastNumberOfSerialIsOdd(serial)) {
+        alert("taglia il terzo cavo");
+    } else if (countValueInArray(colors, "Bianco") > 1 && countValueInArray(colors, "Giallo") == 1) {
+        alert("Taglio il quarto cavo");
+    } else if (countValueInArray(colors, "Rosso") == 0) {
+        alert("taglia il l'ultimo cavo");
+    } else {
+        alert("taglia il quarto cavo");
+    }
+}
+
+function countValueInArray(colors, value) {
+    count = 0;
+    for (var i = 0; i < colors.length; i++) {
+        if (colors[i] == value) {
+            count++;
+        }
+    }
+    return count;
+}
+
+</script>

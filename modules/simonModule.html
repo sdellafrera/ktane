@@ -1,0 +1,85 @@
+<div class="col-xs-12">
+    <h3>Simon</h3>
+    <div class="col-xs-3">
+        <button class="btn btn-danger btn-sm" onclick="simonModule('Rosso');">Rosso</button>
+    </div>
+    <div class="col-xs-3">
+        <button class="btn btn-success btn-sm" onclick="simonModule('Verde');">Verde</button>
+    </div>
+    <div class="col-xs-3">
+        <button class="btn btn-warning btn-sm" onclick="simonModule('Giallo');">Giallo</button>
+    </div>
+    <div class="col-xs-3">
+        <button class="btn btn-info btn-sm" onclick="simonModule('Blu');">Blu</button>
+    </div>
+</div>
+
+<script>
+    function simonModule(button) {
+        if (serialNumberContainsVowel()) {
+            if (getErrorCount() == 0) {
+                if (button == "Blu") {
+                    alert("Rosso");
+                } else if (button == "Rosso") {
+                    alert("Blu");
+                } else if (button == "Giallo") {
+                    alert("Verde");
+                } else if (button == "Verde") {
+                    alert("Giallo");
+                }
+            } else if (getErrorCount() == 1) {
+                if (button == "Blu") {
+                    alert("Verde");
+                } else if (button == "Rosso") {
+                    alert("Giallo");
+                } else if (button == "Giallo") {
+                    alert("Rosso");
+                } else if (button == "Verde") {
+                    alert("Blu");
+                }
+            } else if (getErrorCount() == 2) {
+                if (button == "Blu") {
+                    alert("Rosso");
+                } else if (button == "Rosso") {
+                    alert("Verde");
+                } else if (button == "Giallo") {
+                    alert("Blu");
+                } else if (button == "Verde") {
+                    alert("Giallo");
+                }
+            }
+        } else {
+            if (getErrorCount() == 0) {
+                if (button == "Blu") {
+                    alert("Giallo");
+                } else if (button == "Rosso") {
+                    alert("Blu");
+                } else if (button == "Giallo") {
+                    alert("Rosso");
+                } else if (button == "Verde") {
+                    alert("Verde");
+                }
+            } else if (getErrorCount() == 1) {
+                if (button == "Blu") {
+                    alert("Blu");
+                } else if (button == "Rosso") {
+                    alert("Rosso");
+                } else if (button == "Giallo") {
+                    alert("Verde");
+                } else if (button == "Verde") {
+                    alert("Giallo");
+                }
+            } else if (getErrorCount() == 2) {
+                if (button == "Blu") {
+                    alert("Verde");
+                } else if (button == "Rosso") {
+                    alert("Giallo");
+                } else if (button == "Giallo") {
+                    alert("Rosso");
+                } else if (button == "Verde") {
+                    alert("Blu");
+                }
+            }
+        }
+    }
+</script>

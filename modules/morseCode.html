@@ -1,0 +1,66 @@
+<div class="col-xs-12">
+    <h3>Codice Morse</h3>
+    <div class="col-xs-4">
+        <input class="form-control" type="text" onkeyup="morseCodeDecode()" id="morse_code_encoded" />
+    </div>
+    <div class="col-xs-4">
+        <button class="btn btn-danger" onclick="morseCodeDecode();">Decode</button>
+    </div>
+    <div class="col-xs-4">
+        <label id="morse_code_decoded"></label>
+    </div>
+</div>
+
+<script>
+    function morseCodeDecode() {
+        var decoded = decodeMorse($("#morse_code_encoded")[0].value);
+        $("#morse_code_decoded")[0].innerText = decoded;
+    }
+
+    function decodeMorse(morseCode) {
+        var ref = {
+            '.-': 'a',
+            '-...': 'b',
+            '-.-.': 'c',
+            '-..': 'd',
+            '.': 'e',
+            '..-.': 'f',
+            '--.': 'g',
+            '....': 'h',
+            '..': 'i',
+            '.---': 'j',
+            '-.-': 'k',
+            '.-..': 'l',
+            '--': 'm',
+            '-.': 'n',
+            '---': 'o',
+            '.--.': 'p',
+            '--.-': 'q',
+            '.-.': 'r',
+            '...': 's',
+            '-': 't',
+            '..-': 'u',
+            '...-': 'v',
+            '.--': 'w',
+            '-..-': 'x',
+            '-.--': 'y',
+            '--..': 'z',
+            '.----': '1',
+            '..---': '2',
+            '...--': '3',
+            '....-': '4',
+            '.....': '5',
+            '-....': '6',
+            '--...': '7',
+            '---..': '8',
+            '----.': '9',
+            '-----': '0'
+        };
+
+        return morseCode
+            .split(' ')
+            .map(
+                b => ref[b]
+            ).join('');
+    }
+</script>
